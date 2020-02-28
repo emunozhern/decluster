@@ -236,6 +236,16 @@ registerBlockType("cgb/block-decluster", {
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
 	save: props => {
-		return null;
+		var attributes = props.attributes;
+
+		if (attributes.cards.length > 0) {
+			var itemList = attributes.cards.map(function(item) {
+				return <h1>{item.title}</h1>;
+			});
+
+			return <div class="cards">{itemList}</div>;
+		} else {
+			return null;
+		}
 	}
 });
