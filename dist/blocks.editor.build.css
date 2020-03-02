@@ -115,7 +115,7 @@
   a:hover {
     color: #0275d8; }
   h3 {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-weight: 700;
     line-height: 1.25;
     color: #111;
@@ -188,7 +188,8 @@
     display: block;
     position: relative;
     overflow: hidden;
-    margin: auto; }
+    margin: auto;
+    text-align: center; }
   .album .card .card-image:before {
     content: "";
     width: 100%;
@@ -226,16 +227,11 @@
     -webkit-transition: background 0.1s ease-in;
     -o-transition: background 0.1s ease-in;
     transition: background 0.1s ease-in; }
-  .album .card .card-btn:hover {
-    background: #00b900;
-    text-decoration: none; }
   .album-home .card .card-btn {
     width: 100%; }
   .album-home .card .card-title {
     text-transform: uppercase;
     font-size: 1.5em; }
-  .album-home .card .card-btn:hover {
-    background: rgba(0, 0, 0, 0.8); }
   .card-container {
     -webkit-transition: -webkit-transform 0.1s linear 0.1s;
     transition: -webkit-transform 0.1s linear 0.1s;
@@ -273,13 +269,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    left: 0; }
-  .album-home .card .card-btn:hover {
-    color: #fff; }
-  .album .card .card-btn:hover {
-    background: #404040;
-    text-decoration: none;
-    color: #fff; } }
+    left: 0; } }
 
 @media all and (min-width: 576px) {
   .album .card {
@@ -325,3 +315,5 @@
   line-height: inherit;
   margin-top: 28px;
   margin-bottom: 28px; }
+
+/***********************************/

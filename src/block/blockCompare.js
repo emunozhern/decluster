@@ -23,51 +23,38 @@ const {
 	ToggleControl
 } = wp.components;
 
-registerBlockType("cgb/block-decluster", {
+registerBlockType("cgb/block-compare", {
 	title: "SimpleCluster",
-	icon: <FontAwesomeIcon icon="cubes" />,
+	icon: <FontAwesomeIcon icon="not-equal" />,
 	category: "widgets",
-	keywords: ["simple", "custer", "emunoz"],
+	keywords: ["simple", "compare", "emunoz"],
 	attributes: {
 		cards: {
 			type: "array",
 			default: [
 				{
-					title: "Titulo ...",
-					desc: "Descripción ...",
+					title: "Titulo ..",
+					desc: "Descripcion ..",
 					ahref: "/",
 					isVisible: false,
 					noFollow: false
 				}
 			]
 		},
+
 		number_cards: {
 			type: "number",
 			default: 1
 		},
+
 		styleCard: {
 			type: "string",
 			default: "home"
 		},
+
 		noFollow: {
 			type: "boolean",
 			default: false
-		},
-		sculptingBtn: {
-			type: "boolean",
-			default: false
-		},
-		sculptingImg: {
-			type: "boolean",
-			default: false
-		},
-		sculptingLink: {
-			type: "boolean",
-			default: false
-		},
-		displayBtn: {
-			type: "boolean",
-			default: true
 		}
 	},
 
@@ -80,8 +67,8 @@ registerBlockType("cgb/block-decluster", {
 			for (let i = 0; i < content; i++) {
 				if (cards.length < content) {
 					cards.push({
-						title: "Titulo ...",
-						desc: "Descripción ...",
+						title: "Titulo ..",
+						desc: "Descripcion ..",
 						ahref: "/",
 						isVisible: false,
 						noFollow: false
@@ -178,14 +165,6 @@ registerBlockType("cgb/block-decluster", {
 
 		if (attributes.cards.length) {
 			cardViewDisplay = attributes.cards.map((location, index) => {
-				let displayBtn = attributes.displayBtn ? (
-					<div class="card-btn" onClick={() => console.log(attributes)}>
-						Ver productos
-					</div>
-				) : (
-					""
-				);
-
 				return (
 					<Fragment key={index}>
 						<div class="card">
@@ -198,7 +177,7 @@ registerBlockType("cgb/block-decluster", {
 												handlePopoverClick(index);
 											}}
 										>
-											<FontAwesomeIcon icon="tasks" />
+											<FontAwesomeIcon icon="cogs" />
 										</Button>
 
 										{attributes.cards[index].isVisible && (
@@ -246,13 +225,15 @@ registerBlockType("cgb/block-decluster", {
 									<RichText
 										className="card-text"
 										tagName="p"
-										placeholder={"Ingrese una Descripción ..."}
+										placeholder={"Ingrese una descripcion "}
 										value={attributes.cards[index].desc}
 										onChange={desc => handleDescChange(desc, index)}
 									/>
 								</div>
 
-								{displayBtn}
+								<div class="card-btn" onClick={() => console.log(attributes)}>
+									Ver productos
+								</div>
 							</div>
 						</div>
 					</Fragment>
@@ -291,37 +272,10 @@ registerBlockType("cgb/block-decluster", {
 							label={__("NoFolllow - Global")}
 							checked={!!attributes.noFollow}
 							onChange={() => setAttributes({ noFollow: !attributes.noFollow })}
-						/>
-
-						<ToggleControl
-							label={__("Sculpting Imagen - Global")}
-							checked={!!attributes.sculptingImg}
-							onChange={() =>
-								setAttributes({ sculptingImg: !attributes.sculptingImg })
-							}
-						/>
-
-						<ToggleControl
-							label={__("Sculpting Titulo - Global")}
-							checked={!!attributes.sculptingLink}
-							onChange={() =>
-								setAttributes({ sculptingLink: !attributes.sculptingLink })
-							}
-						/>
-
-						<ToggleControl
-							label={__("Sculpting Boton - Global")}
-							checked={!!attributes.sculptingBtn}
-							onChange={() =>
-								setAttributes({ sculptingBtn: !attributes.sculptingBtn })
-							}
-						/>
-
-						<ToggleControl
-							label={__("Mostrar Boton - Global")}
-							checked={!!attributes.displayBtn}
-							onChange={() =>
-								setAttributes({ displayBtn: !attributes.displayBtn })
+							help={
+								!!attributes.noFollow
+									? __("Aplicado NoFollow a todos los enlaces.")
+									: __("Follow aplicado a todos los enlaces.")
 							}
 						/>
 					</PanelBody>
@@ -344,19 +298,6 @@ registerBlockType("cgb/block-decluster", {
 					? "nofollow noindex noopener noreferrer"
 					: noFollow;
 
-				let displayBtn = attributes.displayBtn ? (
-					<a
-						href={card.ahref}
-						class="card-btn"
-						rel={noFollow}
-						style="width: 100%;"
-					>
-						Ver productos
-					</a>
-				) : (
-					""
-				);
-
 				return (
 					<div class="card">
 						<div class="card-container">
@@ -369,8 +310,14 @@ registerBlockType("cgb/block-decluster", {
 								</a>
 								<p class="card-text">{card.desc}</p>
 							</div>
-
-							{displayBtn}
+							<a
+								href={card.ahref}
+								class="card-btn"
+								rel={noFollow}
+								style="width: 100%;"
+							>
+								Ver productos
+							</a>
 						</div>
 					</div>
 				);

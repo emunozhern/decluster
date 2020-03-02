@@ -214,6 +214,7 @@
 		position: relative;
 		overflow: hidden;
 		margin: auto;
+		text-align: center;
 	}
 	.album .card .card-image:before {
 		content: "";
@@ -262,19 +263,16 @@
 		-o-transition: background 0.1s ease-in;
 		transition: background 0.1s ease-in;
 	}
-	.album .card .card-btn:hover {
-		background: #00b900;
-		text-decoration: none;
-	}
+	// .album .card .card-btn:hover {
+	// 	background: #00b900;
+	// 	text-decoration: none;
+	// }
 	.album-home .card .card-btn {
 		width: 100%;
 	}
 	.album-home .card .card-title {
 		text-transform: uppercase;
 		font-size: 1.5em;
-	}
-	.album-home .card .card-btn:hover {
-		background: rgba(0, 0, 0, 0.8);
 	}
 	.card-container {
 		transition: transform 0.1s linear 0.1s;
@@ -315,14 +313,14 @@
 		bottom: 0;
 		left: 0;
 	}
-	.album-home .card .card-btn:hover {
-		color: #fff;
-	}
-	.album .card .card-btn:hover {
-		background: #404040;
-		text-decoration: none;
-		color: #fff;
-	}
+	// .album-home .card .card-btn:hover {
+	// 	color: #fff;
+	// }
+	// .album .card .card-btn:hover {
+	// 	background: #404040;
+	// 	text-decoration: none;
+	// 	color: #fff;
+	// }
 	@media (min-width: 576px) {
 		.album .card {
 			padding: 1rem;
@@ -374,3 +372,5 @@
 	margin-top: 28px;
 	margin-bottom: 28px;
 }
+
+/***********************************/
