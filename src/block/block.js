@@ -68,6 +68,10 @@ registerBlockType("cgb/block-decluster", {
 		displayBtn: {
 			type: "boolean",
 			default: true
+		},
+		displayDesc: {
+			type: "boolean",
+			default: true
 		}
 	},
 
@@ -186,44 +190,56 @@ registerBlockType("cgb/block-decluster", {
 					""
 				);
 
+				let displayDesc = attributes.displayDesc ? (
+					<RichText
+						className="card-text"
+						tagName="p"
+						placeholder={"Ingrese una Descripción ..."}
+						value={attributes.cards[index].desc}
+						onChange={desc => handleDescChange(desc, index)}
+					/>
+				) : (
+					""
+				);
+
 				return (
 					<Fragment key={index}>
 						<div class="card">
 							<div class="card-container">
+								<div style={{ display: "block", "text-align": "center" }}>
+									<Button
+										className="button button-large"
+										onClick={popover => {
+											handlePopoverClick(index);
+										}}
+									>
+										<FontAwesomeIcon icon="tasks" />
+									</Button>
+
+									{attributes.cards[index].isVisible && (
+										<Popover position="bottom center">
+											<div class="editor-url-input block-editor-url-input">
+												<TextControl
+													placeholder={"Pegar url"}
+													value={attributes.cards[index].ahref}
+													onChange={ahref => handleaHrefChange(ahref, index)}
+												/>
+
+												<ToggleControl
+													label={__("NoFolllow")}
+													checked={!!attributes.cards[index].noFollow}
+													onChange={() => {
+														const cards = [...attributes.cards];
+														cards[index].noFollow = !cards[index].noFollow;
+														setAttributes({ cards });
+													}}
+												/>
+											</div>
+										</Popover>
+									)}
+								</div>
+
 								<div className="card-image">
-									<div style={{ display: "inline" }}>
-										<Button
-											className="button button-large"
-											onClick={popover => {
-												handlePopoverClick(index);
-											}}
-										>
-											<FontAwesomeIcon icon="tasks" />
-										</Button>
-
-										{attributes.cards[index].isVisible && (
-											<Popover position="bottom center">
-												<div class="editor-url-input block-editor-url-input">
-													<TextControl
-														placeholder={"Pegar url"}
-														value={attributes.cards[index].ahref}
-														onChange={ahref => handleaHrefChange(ahref, index)}
-													/>
-
-													<ToggleControl
-														label={__("NoFolllow")}
-														checked={!!attributes.cards[index].noFollow}
-														onChange={() => {
-															const cards = [...attributes.cards];
-															cards[index].noFollow = !cards[index].noFollow;
-															setAttributes({ cards });
-														}}
-													/>
-												</div>
-											</Popover>
-										)}
-									</div>
-
 									<MediaUpload
 										style={{ "margin-top": "10px" }}
 										onSelect={media => handleImageChange(media, index)}
@@ -243,13 +259,7 @@ registerBlockType("cgb/block-decluster", {
 										/>
 									</div>
 
-									<RichText
-										className="card-text"
-										tagName="p"
-										placeholder={"Ingrese una Descripción ..."}
-										value={attributes.cards[index].desc}
-										onChange={desc => handleDescChange(desc, index)}
-									/>
+									{displayDesc}
 								</div>
 
 								{displayBtn}
@@ -324,6 +334,14 @@ registerBlockType("cgb/block-decluster", {
 								setAttributes({ displayBtn: !attributes.displayBtn })
 							}
 						/>
+
+						<ToggleControl
+							label={__("Mostrar Desc - Global")}
+							checked={!!attributes.displayDesc}
+							onChange={() =>
+								setAttributes({ displayDesc: !attributes.displayDesc })
+							}
+						/>
 					</PanelBody>
 				</InspectorControls>
 
@@ -357,17 +375,35 @@ registerBlockType("cgb/block-decluster", {
 					""
 				);
 
+				let displayDesc = attributes.displayDesc ? (
+					<p class="card-text">{card.desc}</p>
+				) : (
+					""
+				);
+
+				let textTitle =
+					attributes.styleCard == "category" ? (
+						card.title
+					) : (
+						<h3>{card.title}</h3>
+					);
+
 				return (
 					<div class="card">
 						<div class="card-container">
 							<a class="card-image" href={card.ahref} rel={noFollow}>
 								<img alt={card.title} title={card.title} src={card.imageUrl} />
 							</a>
-							<div class="card-info same" style="height: 154px;">
+							<div
+								class="card-info same"
+								style={
+									attributes.styleCard == "category" ? "" : "height: 154px;"
+								}
+							>
 								<a href={card.ahref} class="card-title" rel={noFollow}>
-									<h3>{card.title}</h3>
+									{textTitle}
 								</a>
-								<p class="card-text">{card.desc}</p>
+								{displayDesc}
 							</div>
 
 							{displayBtn}
@@ -379,9 +415,9 @@ registerBlockType("cgb/block-decluster", {
 			if (attributes.styleCard == "category") {
 				return (
 					<div className={className + " album album-category"}>
-						{/* <div class="container"> */}
-						<div class="row">{cardViewDisplay}</div>
-						{/* </div> */}
+						<div class="container">
+							<div class="row">{cardViewDisplay}</div>
+						</div>
 					</div>
 				);
 			}
