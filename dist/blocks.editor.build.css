@@ -204,7 +204,6 @@
   .album .card .card-image:hover:before {
     opacity: 0.2; }
   .album .card .card-image img {
-    position: absolute;
     display: block;
     height: auto;
     margin: auto;
