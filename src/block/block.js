@@ -20,7 +20,8 @@ const {
 	Popover,
 	TextControl,
 	SelectControl,
-	ToggleControl
+	ToggleControl,
+	Dropdown
 } = wp.components;
 
 registerBlockType("cgb/block-decluster", {
@@ -200,10 +201,20 @@ registerBlockType("cgb/block-decluster", {
 										>
 											<FontAwesomeIcon icon="tasks" />
 										</Button>
-
 										{attributes.cards[index].isVisible && (
-											<Popover position="bottom center">
-												<div class="editor-url-input block-editor-url-input">
+											<Popover
+												position="bottom center"
+												onFocusOutside={e => {
+													handlePopoverClick(index);
+												}}
+											>
+												<div
+													style={{
+														display: "flex",
+														flexDirection: "column",
+														padding: "10px"
+													}}
+												>
 													<TextControl
 														placeholder={"Pegar url"}
 														value={attributes.cards[index].ahref}
