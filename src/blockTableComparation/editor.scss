@@ -1,0 +1,46 @@
+.table-comparison {
+	position: relative;
+	margin: 0 0 30px;
+	border: 1px solid transparent;
+}
+.table-comparison .row {
+	display: table;
+	width: 100%;
+}
+.table-comparison .cell {
+	display: table-cell;
+	vertical-align: middle;
+	width: 50%;
+	padding: 10px;
+	border: 1px solid #d7d7d7;
+}
+
+.table-comparison .row:nth-of-type(2n) {
+	background-color: #f5f5f5;
+}
+
+.table-comparison .image-left {
+	// width: 100%;
+	// display: inline-block;
+}
+.table-comparison .image-size {
+	display: block;
+	float: none;
+	height: auto;
+	max-height: 150px;
+	max-width: 100%;
+	margin: 10px auto;
+}
+
+.components-range-control .components-base-control__label {
+	width: auto;
+}
+.cell .components-base-control .components-base-control__field {
+	display: flex;
+}
+.cell .components-toggle-control .components-base-control__field {
+	justify-content: center;
+}
+.cell p {
+	margin: 0 0 5px 0 !important;
+}

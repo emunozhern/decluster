@@ -37,6 +37,9 @@ registerBlockType("cgb/block-decluster", {
 					title: "Titulo ...",
 					desc: "Descripción ...",
 					ahref: "/",
+					price: "$ 1,036.56",
+					olderPrice: "ANTES $ 921.99",
+					priceOff: "Ahorras 20%",
 					isVisible: false,
 					noFollow: false
 				}
@@ -51,6 +54,10 @@ registerBlockType("cgb/block-decluster", {
 			default: "home"
 		},
 		noFollow: {
+			type: "boolean",
+			default: false
+		},
+		showPrice: {
 			type: "boolean",
 			default: false
 		},
@@ -88,6 +95,9 @@ registerBlockType("cgb/block-decluster", {
 						title: "Titulo ...",
 						desc: "Descripción ...",
 						ahref: "/",
+						price: "$ 1,036.56",
+						olderPrice: "ANTES $ 921.99",
+						priceOff: "Ahorras 20%",
 						isVisible: false,
 						noFollow: false
 					});
@@ -151,6 +161,34 @@ registerBlockType("cgb/block-decluster", {
 			cards[index].isVisible = !cards[index].isVisible;
 			setAttributes({ cards });
 		};
+		const handleUpClick = index => {
+			const positionFrom = index;
+			const positionTo = index - 1;
+
+			if (positionFrom == 0) {
+				return;
+			}
+			const cards = [...attributes.cards];
+			const temp = cards[positionTo];
+			cards[positionTo] = cards[positionFrom];
+			cards[positionFrom] = temp;
+
+			setAttributes({ cards });
+		};
+		const handleDownClick = index => {
+			const positionFrom = index;
+			const positionTo = index + 1;
+
+			if (positionFrom == attributes.number_cards - 1) {
+				return;
+			}
+			const cards = [...attributes.cards];
+			const temp = cards[positionFrom];
+			cards[positionFrom] = cards[positionTo];
+			cards[positionTo] = temp;
+
+			setAttributes({ cards });
+		};
 
 		const getImageButton = (openEvent, index) => {
 			const cards = [...attributes.cards];
@@ -183,6 +221,51 @@ registerBlockType("cgb/block-decluster", {
 
 		if (attributes.cards.length) {
 			cardViewDisplay = attributes.cards.map((location, index) => {
+				let displayPrice = attributes.showPrice ? (
+					<div class="product-price">
+						<RichText
+							tagName="span"
+							className="older-price"
+							placeholder="ANTES $ 921.99"
+							value={attributes.cards[index].olderPrice}
+							onChange={content => {
+								const cards = [...attributes.cards];
+
+								cards[index].olderPrice = content;
+								setAttributes({ cards });
+							}}
+						/>
+
+						<RichText
+							tagName="span"
+							className="normal-price"
+							placeholder="$ 1,036.56"
+							value={attributes.cards[index].price}
+							onChange={content => {
+								const cards = [...attributes.cards];
+
+								cards[index].price = content;
+								setAttributes({ cards });
+							}}
+						/>
+
+						<RichText
+							tagName="span"
+							className="off-price"
+							placeholder="Ahorras 20%"
+							value={attributes.cards[index].priceOff}
+							onChange={content => {
+								const cards = [...attributes.cards];
+
+								cards[index].priceOff = content;
+								setAttributes({ cards });
+							}}
+						/>
+					</div>
+				) : (
+					""
+				);
+
 				let displayBtn = attributes.displayBtn ? (
 					<div class="card-btn" onClick={() => console.log(attributes)}>
 						Ver productos
@@ -215,6 +298,20 @@ registerBlockType("cgb/block-decluster", {
 										}}
 									>
 										<FontAwesomeIcon icon="tasks" />
+									</Button>
+									<Button
+										onClick={popover => {
+											handleUpClick(index);
+										}}
+									>
+										<FontAwesomeIcon icon="chevron-circle-up" />
+									</Button>
+									<Button
+										onClick={popover => {
+											handleDownClick(index);
+										}}
+									>
+										<FontAwesomeIcon icon="chevron-circle-down" />
 									</Button>
 
 									{attributes.cards[index].isVisible && (
@@ -261,7 +358,7 @@ registerBlockType("cgb/block-decluster", {
 									/>
 								</div>
 
-								<div class="card-info same">
+								<div class="card-info">
 									<div class="card-title">
 										<RichText
 											tagName="h3"
@@ -273,6 +370,8 @@ registerBlockType("cgb/block-decluster", {
 
 									{displayDesc}
 								</div>
+
+								{displayPrice}
 
 								{displayBtn}
 							</div>
@@ -292,7 +391,7 @@ registerBlockType("cgb/block-decluster", {
 								value={attributes.number_cards}
 								onChange={handleRangeControl}
 								min={1}
-								max={10}
+								max={100}
 								step={1}
 							></RangeControl>
 						</PanelRow>
@@ -303,7 +402,8 @@ registerBlockType("cgb/block-decluster", {
 								value={attributes.styleCard}
 								options={[
 									{ label: "Home", value: "home" },
-									{ label: "Category", value: "category" }
+									{ label: "Category", value: "category" },
+									{ label: "Borded", value: "borded" }
 								]}
 								onChange={handleSelectControl}
 							/>
@@ -348,6 +448,14 @@ registerBlockType("cgb/block-decluster", {
 						/>
 
 						<ToggleControl
+							label={__("Mostrar Precio - Global")}
+							checked={!!attributes.showPrice}
+							onChange={() =>
+								setAttributes({ showPrice: !attributes.showPrice })
+							}
+						/>
+
+						<ToggleControl
 							label={__("Mostrar Desc - Global")}
 							checked={!!attributes.displayDesc}
 							onChange={() =>
@@ -357,7 +465,7 @@ registerBlockType("cgb/block-decluster", {
 					</PanelBody>
 				</InspectorControls>
 
-				<div key="2" className={className + " album album-home text-muted"}>
+				<div key="2" className={className + " album text-muted"}>
 					<div class="row">{cardViewDisplay}</div>
 				</div>
 			</Fragment>
@@ -375,12 +483,7 @@ registerBlockType("cgb/block-decluster", {
 					: noFollow;
 
 				let displayBtn = attributes.displayBtn ? (
-					<a
-						href={card.ahref}
-						class="card-btn"
-						rel={noFollow}
-						style="width: 100%;"
-					>
+					<a href={card.ahref} class="card-btn" rel={noFollow}>
 						Ver productos
 					</a>
 				) : (
@@ -393,8 +496,19 @@ registerBlockType("cgb/block-decluster", {
 					""
 				);
 
+				let displayPrice = attributes.showPrice ? (
+					<div class="product-price">
+						<span class="older-price">{card.olderPrice}</span>
+						<span class="normal-price">{card.price}</span>
+						<span class="off-price">{card.priceOff}</span>
+					</div>
+				) : (
+					""
+				);
+
 				let textTitle =
-					attributes.styleCard == "category" ? (
+					(attributes.styleCard == "category") |
+					(attributes.styleCard == "borded") ? (
 						card.title
 					) : (
 						<h3>{card.title}</h3>
@@ -408,13 +522,12 @@ registerBlockType("cgb/block-decluster", {
 							</a>
 							<div
 								class="card-info same"
-								style={
-									attributes.styleCard == "category" ? "" : "height: 154px;"
-								}
+								style={attributes.styleCard == "home" ? "height: 154px;" : ""}
 							>
 								<a href={card.ahref} class="card-title" rel={noFollow}>
 									{textTitle}
 								</a>
+								{displayPrice}
 								{displayDesc}
 							</div>
 
@@ -427,6 +540,16 @@ registerBlockType("cgb/block-decluster", {
 			if (attributes.styleCard == "category") {
 				return (
 					<div className={className + " album album-category"}>
+						<div class="container">
+							<div class="row">{cardViewDisplay}</div>
+						</div>
+					</div>
+				);
+			}
+
+			if (attributes.styleCard == "borded") {
+				return (
+					<div className={className + " album album-borded"}>
 						<div class="container">
 							<div class="row">{cardViewDisplay}</div>
 						</div>

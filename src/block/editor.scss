@@ -5,349 +5,164 @@
  * which makes it higher in priority.
  */
 
-@media all {
-	.block-editor-block-list__layout .block-editor-block-list__block ::selection {
-		background-color: #b3e7fe;
-	}
-	.edit-post-visual-editor *,
-	.edit-post-visual-editor :after,
-	.edit-post-visual-editor :before {
-		box-sizing: inherit;
-	}
-	.block-editor__container img {
-		max-width: 100%;
-		height: auto;
-	}
-	img {
-		border: 0;
-	}
-	a {
-		color: #0073aa;
-		transition-property: border, background, color;
-		transition-duration: 0.05s;
-		transition-timing-function: ease-in-out;
-	}
-	a,
-	div {
-		outline: 0;
-	}
-	a:active,
-	a:hover {
-		color: #00a0d2;
-	}
-	a:focus {
-		color: #124964;
-		box-shadow: 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, 0.8);
-		outline: 1px solid transparent;
-	}
-	p {
-		font-size: 13px;
-		line-height: 1.5;
-		margin: 1em 0;
-	}
-	h3 {
-		display: block;
-		font-weight: 600;
-	}
-	h3 {
-		color: #23282d;
-		font-size: 1.3em;
-		margin: 1em 0;
-	}
-	img {
-		border: none;
-	}
-	@media screen and (max-width: 782px) {
-		body * {
-			-webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
-		}
-	}
-	::-webkit-input-placeholder {
-		color: #72777c;
-	}
-	::-moz-placeholder {
-		color: #72777c;
-		opacity: 1;
-	}
-	:-ms-input-placeholder {
-		color: #72777c;
-	}
-	.card {
-		position: relative;
-		margin-top: 0;
-		padding: 0.7em 2em 1em;
-		min-width: 255px;
-		max-width: 520px;
-		border: 1px solid #ccd0d4;
-		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
-		background: #fff;
-		box-sizing: border-box;
-	}
+.block-editor-block-list__layout .block-editor-block-list__block ::selection {
+	background-color: #b3e7fe;
 }
-/*! CSS Used from: https://deproteinas.com.mx/wp-content/plugins/emunoz-block/assets/block-newsletter.css?ver=1582749869 ; media=all */
-@media all {
-	img {
-		min-width: 1px;
-		min-height: 1px;
-		visibility: visible;
-	}
-	.defer-lazied {
-		transition: opacity 0.1s linear;
-	}
-	.defer-lazied.defer-loaded {
-		background-color: transparent !important;
-	}
-	*,
-	:after,
-	:before {
-		-webkit-box-sizing: inherit;
-		box-sizing: inherit;
-	}
-	* {
-		margin: 0;
-		padding: 0;
-		outline: 0;
-		-webkit-overflow-scrolling: touch;
-	}
-	img {
-		vertical-align: middle;
-		max-width: 100%;
-	}
-	img {
-		height: auto;
-	}
-	a {
-		outline: 0;
-	}
-	a {
-		color: #0275d8;
-		text-decoration: none;
-	}
-	a:hover {
-		color: #0275d8;
-	}
-	h3 {
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-			"Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-			"Segoe UI Symbol";
-		font-weight: 700;
-		line-height: 1.25;
-		color: #111;
-		text-rendering: optimizeLegibility;
-		margin-bottom: 1rem;
-		margin-top: 2.5rem;
-	}
-	h3 {
-		font-size: 1.75rem;
-		margin-bottom: 0.25rem;
-	}
-	p {
-		margin-bottom: 1.5rem;
-		font-size: 1.125rem;
-	}
-	.text-muted {
-		color: #777;
-	}
-	.row {
-		margin-right: -15px;
-		margin-left: -15px;
-	}
-	.album {
-		padding-bottom: 2rem;
-	}
-	.album .row {
-		width: 100%;
-		margin: 0;
-		letter-spacing: -0.31em;
-		word-spacing: -0.43em;
-	}
-	.album .card {
-		padding: 1rem;
-		letter-spacing: normal;
-		word-spacing: normal;
-	}
-	.album .card {
-		float: none;
-		display: inline-block;
-		border: 0;
-		width: 100%;
-		box-sizing: border-box;
-	}
-	.album-home .card-container {
-		overflow: hidden;
-		background: #fff;
-		padding-top: 10px;
-	}
-	.album .card-info {
-		padding: 0 15px 15px;
-	}
-	.album .card .card-title {
-		font-size: 1em;
-		font-weight: 700;
-		text-align: center;
-		display: block;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		margin: 15px 0;
-		color: #000;
-	}
-	.album .card .card-title h3 {
-		font-size: 1em;
-		font-weight: 700;
-		text-align: center;
-		display: block;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		margin: 0;
-		color: #000;
-	}
-	.album .card .card-text {
-		font-size: 1em;
-		height: 58px;
-		overflow: hidden;
-		margin: 0;
-	}
-	.album .card .card-image {
-		height: 200px;
-		width: 80%;
-		display: block;
-		position: relative;
-		overflow: hidden;
-		margin: auto;
-		text-align: center;
-	}
-	.album .card .card-image:before {
-		content: "";
-		width: 100%;
-		height: 100%;
-		// position: absolute;
-		top: 0;
-		left: 0;
-		opacity: 0;
-		background: #fff;
-		-webkit-transition: opacity 0.1s ease-in;
-		-moz-transition: opacity 0.1s ease-in;
-		-ms-transition: opacity 0.1s ease-in;
-		-o-transition: opacity 0.1s ease-in;
-		transition: opacity 0.1s ease-in;
-	}
-	.album .card .card-image:hover:before {
-		opacity: 0.2;
-	}
-	.album .card .card-image img {
-		// position: absolute;
-		display: block;
-		height: auto;
-		margin: auto;
-		max-height: 100%;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-	}
-	.album .card .card-btn {
-		float: left;
-		width: 50%;
-		text-align: center;
-		line-height: 40px;
-		height: 40px;
-	}
-	.album .card .card-btn {
-		text-transform: uppercase;
-		background: #000;
-		color: #fff;
-		font-size: 14px;
-		-webkit-transition: background 0.1s ease-in;
-		-moz-transition: background 0.1s ease-in;
-		-ms-transition: background 0.1s ease-in;
-		-o-transition: background 0.1s ease-in;
-		transition: background 0.1s ease-in;
-	}
-	// .album .card .card-btn:hover {
-	// 	background: #00b900;
-	// 	text-decoration: none;
-	// }
-	.album-home .card .card-btn {
-		width: 100%;
-	}
-	.album-home .card .card-title {
-		// text-transform: uppercase;
-		font-size: 1.5em;
-	}
-	.card-container {
-		transition: transform 0.1s linear 0.1s;
-	}
-	.card-container:hover {
-		/* transform: scale(1.02);
-      box-shadow: 0 0 10px 0 #000000bf;
-      transition: transform 0.1s linear 0.1s; */
-	}
-	.album .card .card-text {
-		text-align: center;
-		height: 67px;
-		color: grey;
-	}
-	.album .card-info {
-		padding: 0 5px;
-	}
-	.album .card .card-btn {
-		border-radius: 3px;
-		color: #000;
-		box-sizing: border-box;
-		position: relative;
-		margin: auto;
-		background-color: #f0c14b;
-		font-weight: 700;
-		font-size: 16px;
-		background-image: url(https://demicrofonos.com/img/icon-amazon-black.svg) !important;
-		background-repeat: no-repeat;
-		background-size: 14px 14px;
-		background-position: 8px center;
-		position: relative;
-		content: "";
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-	}
-	// .album-home .card .card-btn:hover {
-	// 	color: #fff;
-	// }
-	// .album .card .card-btn:hover {
-	// 	background: #404040;
-	// 	text-decoration: none;
-	// 	color: #fff;
-	// }
-	@media (min-width: 576px) {
-		.album .card {
-			padding: 1rem;
-		}
-		.album-home .card {
-			width: 50%;
-		}
-	}
-	@media (min-width: 576px) {
-		.album-home .card {
-			width: 50%;
-		}
-	}
-	@media (min-width: 992px) {
-		.album-home .card {
-			width: 33.3%;
-		}
-	}
-	.album-home .card-container {
-		overflow: hidden;
-		background: #fff;
-		padding-top: 10px;
-	}
-	a {
-		color: #2196f3;
-	}
-	h3 {
-		font-family: "Poppins", sans-serif;
-		font-weight: 400;
-	}
+.edit-post-visual-editor *,
+.edit-post-visual-editor :after,
+.edit-post-visual-editor :before {
+	box-sizing: inherit;
+}
+.block-editor__container img {
+	max-width: 100%;
+	height: auto;
+}
+.text-muted {
+	color: #777;
+}
+.album {
+	padding-bottom: 2rem;
+}
+.album .row {
+	width: 100%;
+	margin: 0;
+	letter-spacing: -0.31em;
+	word-spacing: -0.43em;
+}
+.album .card {
+	position: relative;
+	margin-top: 0;
+	padding: 0.7em 2em 1em;
+	min-width: 255px;
+	max-width: 520px;
+	border: 1px solid #ccd0d4;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+	background: #fff;
+	box-sizing: border-box;
+	padding: 1rem;
+	letter-spacing: normal;
+	word-spacing: normal;
+	float: none;
+	display: inline-block;
+	border: 0;
+	width: 50%;
+	box-sizing: border-box;
+}
+.album .card .card-title h3 {
+	font-size: 1em;
+	font-weight: 600;
+	text-align: center;
+	display: block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin: 10px 0;
+	color: #000;
+}
+.album .card .card-text:focus {
+	height: 100%;
+}
+.album .card .card-text {
+	text-align: center;
+	height: 67px;
+	color: grey;
+	font-size: 1em;
+	height: 58px;
+	overflow: hidden;
+	margin: 0;
+}
+.album .card .card-image {
+	height: 200px;
+	width: 80%;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	margin: auto;
+	text-align: center;
+}
+.album .card .card-image:before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	// position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	background: #fff;
+	-webkit-transition: opacity 0.1s ease-in;
+	-moz-transition: opacity 0.1s ease-in;
+	-ms-transition: opacity 0.1s ease-in;
+	-o-transition: opacity 0.1s ease-in;
+	transition: opacity 0.1s ease-in;
+}
+.album .card .card-image:hover:before {
+	opacity: 0.2;
+}
+.album .card .card-image img {
+	// position: absolute;
+	display: block;
+	height: auto;
+	margin: auto;
+	max-height: 100%;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.album .card .card-btn {
+	width: 100%;
+	text-align: center;
+	line-height: 40px;
+	height: 40px;
+	text-transform: uppercase;
+	background: #000;
+	color: #fff;
+	font-size: 1rem;
+	-webkit-transition: background 0.1s ease-in;
+	-moz-transition: background 0.1s ease-in;
+	-ms-transition: background 0.1s ease-in;
+	-o-transition: background 0.1s ease-in;
+	transition: background 0.1s ease-in;
+	border-radius: 3px;
+	color: #000;
+	box-sizing: border-box;
+	position: relative;
+	margin: auto;
+	background-color: #f0c14b;
+	font-weight: 600;
+	background-image: url(https://demicrofonos.com/img/icon-amazon-black.svg) !important;
+	background-repeat: no-repeat;
+	background-size: 14px 14px;
+	background-position: 8px center;
+	position: relative;
+	content: "";
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.album .card-info {
+	padding: 0 5px;
+}
+
+.card .product-price {
+	text-align: center;
+}
+.card .older-price {
+	margin-top: 20px;
+	padding-bottom: 20px;
+	text-transform: uppercase;
+	text-decoration: line-through;
+}
+.card .normal-price {
+	text-transform: uppercase;
+	display: block;
+	font-size: 150%;
+	color: red;
+}
+.card .off-price {
+	color: red;
+	display: block;
+	font-size: small;
 }
 /*! CSS Used from: Embedded */
 .editor-styles-wrapper h3 {
